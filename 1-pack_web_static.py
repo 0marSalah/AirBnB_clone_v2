@@ -8,11 +8,13 @@ from datetime import datetime
 from fabric.api import local
 from os.path import isdir
 
+time = "%Y%m%d%H%M%S"
+
 
 def do_pack():
     """generates a tgz archive"""
     try:
-        date = datetime.now().strftime("%Y%m%d%H%M%S")
+        date = datetime.now().strftime(time)
         if isdir("versions") is False:
             local("mkdir versions")
         file_name = "versions/web_static_{}.tgz".format(date)
