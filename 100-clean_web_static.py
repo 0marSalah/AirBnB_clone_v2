@@ -1,9 +1,5 @@
 #!/usr/bin/python3
-"""
-a Fabric script (based on the file 3-deploy_web_static.py)
-that deletes out-of-date archives,
-using the function do_clean.
-"""
+"""a Fabric script (based on the file 3-deploy_web_static.py)"""
 
 import os
 from datetime import datetime
@@ -72,15 +68,15 @@ def deploy():
 
 
 def do_clean(number=0):
-  l = os.listdir("versions")
+  archives = os.listdir("versions")
   if number is 2:
-    for i in l[2:]:
+    for i in archives[2:]:
         os.unlink("versions/{}".format(i))
         run("rm -f versions/{}".format(i))
         run("rm -f /data/web_static/releases/{}".format(i))
         print("Clean is done successfully!")
   elif number is 1 or number is 0:
-    for i in l[1:]:
+    for i in archives[1:]:
         os.unlink("versions/{}".format(i))
         run("rm -f versions/{}".format(i))
         run("rm -f /data/web_static/releases/{}".format(i))
