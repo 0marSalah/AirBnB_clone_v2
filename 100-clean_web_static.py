@@ -1,13 +1,10 @@
 #!/usr/bin/python3
-"""a Fabric script (based on the file 3-deploy_web_static.py)"""
-
+'''deletes out-of-date archives, using the function do_clean'''
 import os
 from datetime import datetime
 from fabric.api import env, local, put, run, runs_once
 
-
 env.hosts = ['54.236.50.147	', '54.87.228.212']
-
 
 @runs_once
 def do_pack():
@@ -38,12 +35,12 @@ def do_deploy(archive_path):
     Args:
         archive_path (str): The path to the archived static files.
     """
-    ret = False
     if not os.path.exists(archive_path):
-        return ret
+        return False
     file_name = os.path.basename(archive_path)
     folder_name = file_name.replace(".tgz", "")
     folder_path = "/data/web_static/releases/{}/".format(folder_name)
+    success = False
     try:
         put(archive_path, "/tmp/{}".format(file_name))
         run("mkdir -p {}".format(folder_path))
@@ -54,10 +51,10 @@ def do_deploy(archive_path):
         run("rm -rf /data/web_static/current")
         run("ln -s {} /data/web_static/current".format(folder_path))
         print('New version deployed!')
-        ret = True
+        success = True
     except Exception:
-        ret = False
-    return ret
+        success = False
+    return success
 
 
 def deploy():
@@ -68,16 +65,20 @@ def deploy():
 
 
 def do_clean(number=0):
-  archives = os.listdir("versions")
-  if number is 2:
-    for i in archives[2:]:
-        os.unlink("versions/{}".format(i))
-        run("rm -f versions/{}".format(i))
-        run("rm -f /data/web_static/releases/{}".format(i))
-        print("Clean is done successfully!")
-  elif number is 1 or number is 0:
-    for i in archives[1:]:
-        os.unlink("versions/{}".format(i))
-        run("rm -f versions/{}".format(i))
-        run("rm -f /data/web_static/releases/{}".format(i))
-        print("Clean is done successfully!")
+    """Deletes out-of-date archives of the static files.
+    Args:
+        number (Any): The number of archives to keep.
+    """
+    archives = os.listdir('versions/')
+    archives.sort(reverse=True)
+    r_number = int(number)
+    if r_number == 0:
+        r_number += 1
+    if r_number < len(archives):
+        archives = archives[r_number:]
+    else:
+        archives = []
+    for archive in archives:
+        os.unlink('versions/{}'.format(archive))
+    for i in range(0, r_number):
+        run("rm -rf /data/web_static/releases/{}".format(archives[i]))
