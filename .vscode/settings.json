@@ -8,11 +8,10 @@
       "previewLimit": 50,
       "server": "localhost",
       "port": 3306,
-      "driver": "MySQL",
+      "driver": "MariaDB",
       "name": "hbnb_dev",
       "database": "hbnb_dev_db",
-      "username": "hbnb_dev",
-      "askForPassword": true
+      "username": "root"
     }
   ]
 }
