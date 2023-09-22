@@ -5,7 +5,7 @@
 from flask import Flask, abort, render_template
 
 
-appFask(__name__)
+app = Flask(__name__)
 
 
 @app.route('/', strict_slashes=False)
