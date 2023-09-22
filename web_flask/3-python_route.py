@@ -25,15 +25,13 @@ def hbnb():
 @app.route('/c/<text>', strict_slashes=False)
 def route_c(text):
     """Returns a page about C"""
-
     return ("C {}".format(text.replace('_', ' ')))
 
 
 @app.route('/python', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
-def rout_python(text = "is cool"):
+def rout_python(text="is cool"):
     """Returns a page about C"""
-
     return ("Python {}".format(text.replace('_', ' ')))
 
 

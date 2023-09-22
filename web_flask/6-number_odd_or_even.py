@@ -5,7 +5,7 @@
 from flask import Flask, abort, render_template
 
 
-appFask(__name__)
+app = Flask(__name__)
 
 
 @app.route('/', strict_slashes=False)
@@ -50,6 +50,14 @@ def rout_number_template(n):
 
     return (render_template("5-number.html",
                             n=n) if n.isdigit() else abort(404))
+
+
+@app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
+def number_odd_or_even(n):
+    """Returns a page about number"""
+
+    return (render_template("6-number_odd_or_even.html",
+                            n=n, mod=("even" if n % 2 == 0 else "odd")))
 
 
 if __name__ == '__main__':
