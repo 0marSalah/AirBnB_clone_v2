@@ -41,7 +41,7 @@ def rout_python(text="is cool"):
 def rout_number(n):
     """Returns a page about number"""
 
-    return ("{} is number".format(n) if n.isdigit() else abort(404))
+    return ("{} is a number".format(n) if n.isdigit() else abort(404))
 
 
 if __name__ == '__main__':
