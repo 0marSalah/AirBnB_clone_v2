@@ -34,11 +34,11 @@
   background-color: #fafafa;
   width: 100%;
   max-height: 300px;
-  overflow: auto;
+  overflow-y: auto;
 
   margin-left: -1px;
   margin-top: 8px;
-  padding: 25px 0px;
+  padding: 25px 20px;
 
   border: 1px solid #dddddd;
   border-radius: 4px;
@@ -50,6 +50,14 @@
 
 .filter_amenities:hover .popover {
   display: inline-block;
+}
+
+.cities li {
+  padding-left: 25px;
+}
+
+.cities h3 {
+  padding-left: 10px !important;
 }
 
 ul {
