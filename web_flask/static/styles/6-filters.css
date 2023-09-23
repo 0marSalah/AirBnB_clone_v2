@@ -7,24 +7,23 @@
   border-radius: 4px;
 }
 
-.locations {
-  display: inline;
+.locations,
+.filter_amenities {
+  display: flex;
   vertical-align: middle;
   float: left;
   height: 100%;
   width: 25%;
+  flex-direction: column;
+  position: relative;
+  justify-content: center;
+}
 
+.locations {
   line-height: 20px;
   border-right: 1px solid #dddddd;
 }
-
 .filter_amenities {
-  display: inline;
-  vertical-align: middle;
-  height: 100%;
-  float: left;
-  width: 25%;
-
   line-height: 20px;
 }
 
@@ -35,13 +34,23 @@
   width: 100%;
   max-height: 300px;
   overflow-y: auto;
-
   margin-left: -1px;
   margin-top: 8px;
   padding: 25px 20px;
-
   border: 1px solid #dddddd;
   border-radius: 4px;
+  position: absolute;
+  width: 100%;
+  top: 62px;
+}
+
+.aminity {
+  padding-left: 50px;
+  padding-top: 10px;
+}
+
+.aminity li {
+  margin-block: 5px;
 }
 
 .locations:hover .popover {
@@ -74,9 +83,9 @@ h2 {
 
 h3 {
   font-weight: 600;
-  margin-top: 12px;
-  margin-bottom: 5px;
-  padding-left: 45px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-left: 20px;
 }
 
 h4 {
